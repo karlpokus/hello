@@ -1,0 +1,24 @@
+{
+  "name": "hello",
+  "version": "1.0.0",
+  "description": "node http request wrapper",
+  "main": "hello.js",
+  "scripts": {
+    "test": "tape ./test/test.js"
+  },
+  "author": "Karl Pokus <karl.pokus@gmail.com> (https://github.com/karlpokus)",
+  "license": "MIT",
+  "keywords": [
+    "node",
+    "request",
+    "wrapper",
+    "json"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/karlpokus/hello.git"
+  },
+  "devDependencies": {
+    "tape": "^4.6.0"
+  }
+}
