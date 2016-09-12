@@ -10,30 +10,30 @@ $ npm i hello-http
 ### simple remote request
 `hello(method, url [, data], cb)`
 
-`method` string
+`method` *string*
 
-`url` string
+`url` *string*
 
-`data` object. Optional
+`data` *object* stringified to json by default and appropriate headers set. Optional
 
 ### custom remote request or localhost
 `hello({method, hostname, headers [, port, path, data]}, cb)`
 
-`method` string
+`method` *string*
 
-`hostname` string. defaults to `localhost`
+`hostname` *string* defaults to `localhost`
 
-`port` number. Required if requesting `localhost`. Defaults to 80
+`port` *number* Required if requesting `localhost`. Defaults to 80
 
-`path` string. Defaults to `/`
+`path` *string* Defaults to `/`
 
-`data` object. Optional
+`data` *object* or *string*. Parsed as json or urlencoded and appropriate headers set. Optional
 
-`headers` object. `Content-Type` defaults to `application/json` if `data` i set.
+`headers` *object* Will be empty unless `data` is set.
 
 All options in the [original api](https://nodejs.org/api/http.html#http_http_request_options_callback) is supported.
 
-##### cb(err, res)
+### cb(err, res)
 `err` null or an error message
 
 `res.raw` unparsed response. Includes headers and statuscodes.

@@ -20,7 +20,7 @@ module.exports = function(method, urlArg, data, cb){
     opts = method;
     cb = urlArg;
   }
-
+  // the request
   var req = http.request(opts, function(res){
     var data = '',
         out = {raw: res};
@@ -43,17 +43,19 @@ module.exports = function(method, urlArg, data, cb){
   }).on('error', function(e){
     cb(e.message);
   });
-
-  if (wat.call(data) === '[object Object]' || opts.data) {
-    req.write(JSON.stringify(data || opts.data));
-
-    if (!opts.headers) {
-      opts.headers = {};
-
-      if (!opts.headers['Content-Type']) {
-        opts.headers['Content-Type'] = 'application/json';
-      }
-    }      
+  
+  // data
+  if (!opts.headers) {
+    opts.headers = {};
   }
+  if (wat.call(data) === '[object Object]' || wat.call(opts.data) === '[object Object]') {
+    opts.headers['Content-Type'] = 'application/json';
+    req.write(JSON.stringify(data || opts.data));
+  }
+  if (typeof opts.data === 'string') {
+    opts.headers['Content-Type'] = 'application/x-www-form-urlencoded';
+    req.write(opts.data);
+  }
+  
   req.end();
 }
