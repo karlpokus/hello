@@ -35,16 +35,30 @@ test('GET localhost no data', function(t){
   });
 });
 
-test('POST localhost with data', function(t){
+test('POST localhost with json', function(t){
   hello({
     method: 'POST',
     data: {cats: 5},
     path: '/inc',
-    port: 8080
+    port: 8080,
   }, function(err, res){
     t.false(err, 'err');
     t.equal(res.raw.statusCode, 200, 'res.raw');
     t.equal(res.data.cats, 6, 'res.data');
+    t.end();
+  });
+});
+
+test('POST localhost with urlencoded string', function(t){
+  hello({
+    method: 'POST',
+    data: 'cat=bixa&age=2',
+    path: '/inc',
+    port: 8080,
+  }, function(err, res){
+    t.false(err, 'err');
+    t.equal(res.raw.statusCode, 200, 'res.raw');
+    t.equal(res.data, 'cat=bixa&age=2', 'res.data');
     t.end();
   });
 });

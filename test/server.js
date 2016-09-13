@@ -8,12 +8,24 @@ var http = require('http'),
           data += chunk;
         })
         .on('end', function(){
-          try {
-            data = JSON.parse(data);
-            data.cats++;
+        
+          // urlencoded
+          if (req.headers['content-type'] === 'application/x-www-form-urlencoded') {
             cb(null, data);
-          } catch(e) {
-            cb(e.message);
+            
+            // json
+          } else if (req.headers['content-type'] === 'application/json') {
+            try {
+              data = JSON.parse(data);
+              data.cats++;
+              cb(null, data);
+            } catch(e) {
+              cb(e.message);
+            }
+            
+            // wrong header
+          } else {
+            cb('Wrong header set');
           }
         })
     };
