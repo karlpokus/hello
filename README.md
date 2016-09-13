@@ -1,3 +1,5 @@
+[![npm version](https://badge.fury.io/js/hello-http.svg)](https://badge.fury.io/js/hello-http)
+
 # hello
 A node http.request wrapper with some sugar like `url`, `data` and json parsing.
 
